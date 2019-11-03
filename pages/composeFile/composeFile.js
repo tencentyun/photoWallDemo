@@ -93,27 +93,7 @@ Page({
   },
 
   handleWatermerEvent: function (rule, callback) {
-    var headers = {};
-    var oringeFilekey = util.getUrlRelativePath(this.data.ImgUrl);
-
-    var composeKey = '/' + oringeFilekey;
-    var pathname = '/' + oringeFilekey;
-    var url = config.CiV5Host + composeKey + '?image_process';
-    headers["Pic-Operations"] = rule;
-    util.getAuthorization({
-      Method: 'POST', Pathname: pathname
-    }, function (AuthData) {
-      headers["Authorization"] = AuthData.Authorization;
-      headers["x-cos-security-token"] = AuthData.XCosSecurityToken,
-        util.post(url, headers).then((res) => {
-          util.hideLoading();
-          callback(res);
-        }).catch(res => {
-          util.hideLoading();
-          throw res;
-        })
-
-    })
+  
   },
   /**
    * 跳转到盲水印页面
